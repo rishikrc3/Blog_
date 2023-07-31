@@ -8,7 +8,6 @@ const Layout = () => {
     <div className="App">
       <Header title="React-Js Blog" />
       <Nav />
-
       <Outlet />
       <Footer />
     </div>
