@@ -17,6 +17,14 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
+        <Route exact path="/post">
+          <NewPost />
+        </Route>
+        <Route exact path="/post/:id">
+          <PostPage />
+        </Route>
+        <Route path="/about" component={About} />
+        <Route path="*" component={Misssing} />
       </Switch>
       <Footer />
     </div>
