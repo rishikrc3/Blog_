@@ -13,11 +13,11 @@ function App() {
     <div className="App">
       <Header />
       <Nav />
-      <Home />
-      <NewPost />
-      <PostPage />
-      <About />
-      <Misssing />
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+      </Switch>
       <Footer />
     </div>
   );
