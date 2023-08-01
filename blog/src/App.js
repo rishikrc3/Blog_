@@ -70,10 +70,22 @@ function App() {
       }
     }
   };
-  const handleDelete = (id) => {
-    const postList = posts.filter((post) => post.id !== id);
-    setPosts(postList);
-    navigate("/");
+  const handleDelete = async (id) => {
+    try {
+      await api.delete(`/posts/${id}`);
+      const postList = posts.filter((post) => post.id !== id);
+      setPosts(postList);
+      navigate("/");
+    } catch (err) {
+      if (err.response) {
+        // Not in the 200 response range
+        console.log(err.response.data);
+        console.log(err.response.status);
+        console.log(err.response.headers);
+      } else {
+        console.log(`Error: ${err.message}`);
+      }
+    }
   };
   return (
     <Routes>
