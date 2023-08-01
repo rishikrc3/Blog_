@@ -1,3 +1,28 @@
 {
-  "posts": []
+  "posts": [
+    {
+      "id": 2,
+      "title": "This is Lojens",
+      "datetime": "August 01, 2023 3:49:21 PM",
+      "body": "Lojens the editor"
+    },
+    {
+      "id": 3,
+      "title": "This is the best post ever",
+      "datetime": "August 01, 2023 3:52:02 PM",
+      "body": "This is the bool cool edit"
+    },
+    {
+      "id": 4,
+      "title": "Cool edit",
+      "datetime": "August 01, 2023 3:46:05 PM",
+      "body": "Coolest edit ever"
+    },
+    {
+      "id": 5,
+      "title": "This is another post",
+      "datetime": "August 01, 2023 4:07:36 PM",
+      "body": "once again"
+    }
+  ]
 }

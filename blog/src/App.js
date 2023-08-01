@@ -4,6 +4,7 @@ import NewPost from "./NewPost";
 import PostPage from "./PostPage";
 import About from "./About";
 import Missing from "./Misssing";
+import EditPost from "./EditPost";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { format } from "date-fns";
@@ -14,6 +15,8 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [postTitle, setPostTitle] = useState("");
   const [postBody, setPostBody] = useState("");
+  const [editTitle, setEditTitle] = useState("");
+  const [editBody, setEditBody] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -70,6 +73,21 @@ function App() {
       }
     }
   };
+  const handleEdit = async (id) => {
+    const datetime = format(new Date(), "MMMM dd, yyyy pp");
+    const updatedPost = { id, title: editTitle, datetime, body: editBody };
+    try {
+      const response = await api.put(`/posts/${id}`, updatedPost);
+      setPosts(
+        posts.map((post) => (post.id === id ? { ...response.data } : post))
+      );
+      setEditTitle("");
+      setEditBody("");
+      navigate("/");
+    } catch (err) {
+      console.log(`Error: ${err.message}`);
+    }
+  };
   const handleDelete = async (id) => {
     try {
       await api.delete(`/posts/${id}`);
@@ -112,6 +130,19 @@ function App() {
             element={<PostPage posts={posts} handleDelte={handleDelete} />}
           />
         </Route>
+        <Route
+          path="/edit/:id"
+          element={
+            <EditPost
+              posts={posts}
+              handleEdit={handleEdit}
+              editTitle={editTitle}
+              setEditTitle={setEditTitle}
+              editBody={editBody}
+              setEditBody={setEditBody}
+            />
+          }
+        ></Route>
         <Route path="about" element={<About />} />
         <Route path="*" element={<Missing />} />
       </Route>
